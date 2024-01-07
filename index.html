@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Carousel</title>
+    <style>
+        .carousel img {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Carousel</h1>
+    <div class="carousel">
+        <img alt="First" src="https://placehold.co/350x200?text=1" />
+        <img alt="Second" src="https://placehold.co/350x200?text=2" />
+        <img alt="Third" src="https://placehold.co/350x200?text=3" />
+        <img alt="Fourth" src="https://placehold.co/350x200?text=4" />
+        <img alt="Fifth" src="https://placehold.co/350x200?text=5" />
+    </div>
+    <script>
+        // Your Code
+        const images = document.querySelectorAll(".carousel img");
+
+        //accepts image as parameter, then displays the image
+        const showImage = (image) => {
+            image.style.display = "block";
+        }
+
+        //accepts image as parameter, then hides the image
+        const hideImage = (image) => {
+            image.style.display = "none";
+        }
+
+        //show first image on init
+        images[0].style.display = "block";
+        setInterval(() => {
+            for (let i = 0; i < images.length; i++) {
+                //if last image is displayed
+                if (i + 1 === images.length) {
+                    //show first image again
+                    showImage(images[0]);
+                    //hide current image
+                    hideImage(images[i]);
+                    break;
+                }
+                //if image is active
+                if (window.getComputedStyle(images[i]).display === "block") {
+                    //hide current image
+                    hideImage(images[i]);
+                    //show next image
+                    showImage(images[i + 1]);
+                    break;
+                }
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>
